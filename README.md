@@ -1,2 +1,2 @@
 # Meteor-is-Awesome
-Trying Meteor
+Example project trying Meteor
