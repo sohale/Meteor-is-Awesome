@@ -2,6 +2,8 @@ if (Meteor.isClient) {
   // counter starts at 0
   Session.setDefault('counter', 0);
 
+  var keys = Object.keys(Template.hello);
+  alert( Object.keys(Template.hello) );
   Template.hello.helpers({
     counter: function () {
       return Session.get('counter');
@@ -14,6 +16,15 @@ if (Meteor.isClient) {
       Session.set('counter', Session.get('counter') + 1);
     }
   });
+
+  Template.body.helpers({
+    tasks: [
+      { text: "This is task 1" },
+      { text: "This is task 2" },
+      { text: "This is task 3" }
+    ]
+  });
+
 }
 
 if (Meteor.isServer) {
