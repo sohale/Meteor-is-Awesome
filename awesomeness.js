@@ -27,7 +27,7 @@ if (Meteor.isClient) {
   Template.infobox.events({
     'click button': function () {
           var keys = Object.keys(Template.infobox);
-          alert( Object.keys(Template.infobox) );
+          alert( JSON.stringify(keys) );
     }
   });
 
@@ -41,6 +41,21 @@ if (Meteor.isClient) {
   Template.pokert.helpers({
     user: function () {
       return "person 1";
+    }
+  });
+
+
+  Template.body.helpers({
+    users: [
+      { uid: 121, uname: "sebastian" },
+      { uid: 122, uname: "joe" },
+      { uid: 124, uname: "julia" }
+    ]
+  });
+
+  Template.auser.events({
+    'click button': function () {
+        alert("poke done"); <!-- How to pass the properties of each user?-->
     }
   });
 
