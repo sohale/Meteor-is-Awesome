@@ -2,8 +2,7 @@ if (Meteor.isClient) {
   // counter starts at 0
   Session.setDefault('counter', 0);
 
-  var keys = Object.keys(Template.hello);
-  alert( Object.keys(Template.hello) );
+
   Template.hello.helpers({
     counter: function () {
       return Session.get('counter');
@@ -23,6 +22,26 @@ if (Meteor.isClient) {
       { text: "This is task 2" },
       { text: "This is task 3" }
     ]
+  });
+
+  Template.infobox.events({
+    'click button': function () {
+          var keys = Object.keys(Template.infobox);
+          alert( Object.keys(Template.infobox) );
+    }
+  });
+
+
+
+  Template.pokert.events({
+    'click button': function () {
+        alert( "You poked ");// + Template.pokert.get('getuname') );
+    }
+  });
+  Template.pokert.helpers({
+    user: function () {
+      return "person 1";
+    }
   });
 
 }

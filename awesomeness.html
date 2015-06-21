@@ -18,6 +18,10 @@
   </div>
 
   {{> hello}}
+  <hr/>
+  {{> pokert}}
+  <hr/>
+  {{> infobox}}
 </body>
 
 <template name="hello">
@@ -25,7 +29,14 @@
   <p>You've pressed the button {{counter}} times.</p>
 </template>
 
+<template name="infobox">
+  Infobox: <button>show info</button>
+</template>
 
 <template name="task">
-  <li>{{text}}</li>
+  wot {{text}}
+</template>
+
+<template name="pokert">
+  <button> Poke {{user}}</button> <!-- user is taken from helper?-->
 </template>
