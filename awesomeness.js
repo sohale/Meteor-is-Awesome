@@ -1,3 +1,5 @@
+UsersDB = new Mongo.Collection("users");
+
 if (Meteor.isClient) {
   // counter starts at 0
   Session.setDefault('counter', 0);
@@ -46,11 +48,14 @@ if (Meteor.isClient) {
 
 
   Template.body.helpers({
-    users: [
-      { uid: 121, uname: "sebastian" },
-      { uid: 122, uname: "joe" },
-      { uid: 124, uname: "julia" }
-    ]
+    users: function () {
+        return UsersDB.find({});
+    }
+    //users: [
+    //  { uid: 121, uname: "sebastian" },
+    //  { uid: 122, uname: "joe" },
+    //  { uid: 124, uname: "julia" }
+    //]
   });
 
   Template.auser.events({
