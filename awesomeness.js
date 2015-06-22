@@ -59,7 +59,9 @@ if (Meteor.isClient) {
     //]
     ,
     msglist: function () {
-        return MessagesTable.find({});
+        //return MessagesTable.find({});
+        return MessagesTable.find({}, {sort: {createdAt: +1}});
+        //todo: read https://www.meteor.com/try/4   "Attaching events to templates"
     }
  
   });
