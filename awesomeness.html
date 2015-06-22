@@ -23,12 +23,12 @@
   <hr/>
   {{> infobox}}
   <hr/>
+    Neighbours list:
     <ul>
       {{#each users}}
         {{> auser}}
       {{/each}}
     </ul>
-
 </body>
 
 <template name="hello">
@@ -50,5 +50,5 @@
 </template>
 
 <template name="auser">
-   User {{uid}}:<button>{{uname}}</button> <!-- Taken from the json-->
+   <li><b>{{uname}}</b><button>poke</button> (User {{uid}}) </li> <!-- Taken from the json-->
 </template>
