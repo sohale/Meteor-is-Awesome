@@ -1,4 +1,5 @@
 UsersDB = new Mongo.Collection("users");
+MessagesTable = new Mongo.Collection("messages");
 
 if (Meteor.isClient) {
   // counter starts at 0
@@ -56,7 +57,38 @@ if (Meteor.isClient) {
     //  { uid: 122, uname: "joe" },
     //  { uid: 124, uname: "julia" }
     //]
+    ,
+    msglist: function () {
+        return MessagesTable.find({});
+    }
+ 
   });
+
+//New:
+// Inside the if (Meteor.isClient) block, right after Template.body.helpers:
+Template.body.events({
+  "submit .new-message": function (event) {
+    // This function is called when the new task form is submitted
+
+    var text = event.target.text.value;
+    var receiver_uid = 30;
+    var sender_uid = 5;
+
+    MessagesTable.insert({
+      touid: receiver_uid,
+      fromuid: sender_uid,
+      text: text,
+      createdAt: new Date() // current time
+    });
+
+    // Clear form
+    event.target.text.value = "";
+
+    // Prevent default form submit
+    return false;
+  }
+});
+
 
   Template.auser.events({
     'click button': function () {
@@ -64,6 +96,14 @@ if (Meteor.isClient) {
     }
   });
 
+/*
+  //Message operations
+  Template.amessage.events({
+    'click button': function () {
+        alert("forward message (broadcast to neighbours)");
+    }
+  });
+*/
 }
 
 if (Meteor.isServer) {

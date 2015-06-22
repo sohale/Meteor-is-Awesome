@@ -8,6 +8,15 @@
   <div class="container">
     <header>
       <h1>Neighbours</h1>
+      <header>
+      <h1>Todo List</h1>
+
+      <!-- add a form below the h1 -->
+      <form class="new-message">
+        <input type="text" name="text" placeholder="Type a message to broadcast" />
+      </form>
+    </header>
+
     </header>
 
     <ul>
@@ -29,6 +38,16 @@
         {{> auser}}
       {{/each}}
     </ul>
+ <hr/>
+    Message box:
+    <ul>
+      {{#each msglist}}
+        {{> amessage}}
+      {{/each}}
+    </ul>
+
+    msglist
+
 </body>
 
 <template name="hello">
@@ -51,4 +70,11 @@
 
 <template name="auser">
    <li><b>{{uname}}</b><button>poke</button> (User {{uid}}) </li> <!-- Taken from the json-->
+</template>
+<template name="amessage">
+   <li>
+      {{fromuid}}>{{touid}}
+      <b>{{text}}</b>
+      {{createdAt}}
+   </li>
 </template>
