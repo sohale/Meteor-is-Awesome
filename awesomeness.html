@@ -1,40 +1,18 @@
 <head>
-  <title>awesomeness</title>
+  <title>flo-pok</title>
 </head>
 
 <body>
-  <h1>Welcome to LiveDecide</h1>
+  <h1>Welcome to flopok LiveDecide</h1>
 
   <div class="container">
-    <header>
-      <h1>Neighbours</h1>
-      <header>
-      <h1>Todo List</h1>
-
-{{#if currentUser}}
-      <!-- add a form below the h1 -->
-      <form class="new-message">
-        <input type="text" name="text" placeholder="Type a message to broadcast" />
-      </form>
-{{else}}
-      Please log in.
-{{/if}}
-    </header>
-
-    </header>
-
-    <ul>
-      {{#each tasks}}
-        {{> task}}
-      {{/each}}
-    </ul>
+  <!-- no "tasks" -->
   </div>
 
-  {{> hello}}
+  {{> hello}} {{> infobox}}
   <hr/>
   {{> pokert}}
-  <hr/>
-  {{> infobox}}
+
   <hr/>
     Neighbours list:
     <ul>
@@ -43,6 +21,15 @@
       {{/each}}
     </ul>
  <hr/>
+{{#if currentUser}}
+      <!-- add a form below the h1 -->
+      <form class="new-message">
+        <input type="text" name="text" placeholder="Type a message to broadcast" />
+      </form>
+{{else}}
+      Please log in.
+{{/if}}
+
     Message box:
     <ul>
       {{#each msglist}}
@@ -55,8 +42,7 @@
 </body>
 
 <template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+  <button>Click counter</button>: You've pressed this button {{counter}} times.
 </template>
 
 <template name="infobox">

@@ -19,6 +19,7 @@ if (Meteor.isClient) {
     }
   });
 
+  /*
   Template.body.helpers({
     tasks: [
       { text: "This is task 1" },
@@ -26,6 +27,7 @@ if (Meteor.isClient) {
       { text: "This is task 3" }
     ]
   });
+  */
 
   Template.infobox.events({
     'click button': function () {
@@ -70,7 +72,7 @@ if (Meteor.isClient) {
 // Inside the if (Meteor.isClient) block, right after Template.body.helpers:
 Template.body.events({
   "submit .new-message": function (event) {
-    // This function is called when the new task form is submitted
+    // This function is called when the new ... form is submitted
 
     var text = event.target.text.value;
     var receiver_uid = 30;
