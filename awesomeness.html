@@ -12,6 +12,7 @@
   {{> hello}} {{> infobox}}
   <hr/>
   {{> pokert}}
+  Vote: <button>1</button><button>2</button><button>3</button>
 
   <hr/>
     Neighbours list:
@@ -21,6 +22,7 @@
       {{/each}}
     </ul>
  <hr/>
+     Message box:
 {{#if currentUser}}
       <!-- add a form below the h1 -->
       <form class="new-message">
@@ -30,7 +32,6 @@
       Please log in.
 {{/if}}
 
-    Message box:
     <ul>
       {{#each msglist}}
         {{> amessage}}
