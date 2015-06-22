@@ -1,4 +1,4 @@
-UsersDB = new Mongo.Collection("users");
+UsersDB = new Mongo.Collection("neighbour_users");
 MessagesTable = new Mongo.Collection("messages");
 
 if (Meteor.isClient) {
@@ -49,7 +49,7 @@ if (Meteor.isClient) {
 
 
   Template.body.helpers({
-    users: function () {
+    neighbour_users: function () {
         return UsersDB.find({});
     }
     //users: [
@@ -80,7 +80,11 @@ Template.body.events({
       touid: receiver_uid,
       fromuid: sender_uid,
       text: text,
-      createdAt: new Date() // current time
+      createdAt: new Date(), // current time
+
+      //The "you" user
+      owner: Meteor.userId(),           // _id of logged in user
+      username: Meteor.user().username  // username of logged in user
     });
 
     // Clear form
@@ -105,7 +109,13 @@ Template.body.events({
         alert("forward message (broadcast to neighbours)");
     }
   });
+  //todo: chekcbox: only received messages. Only original messages. (ref: original from whom to whom: messages PK)
 */
+
+    // At the bottom of the client code
+    Accounts.ui.config({
+      passwordSignupFields: "USERNAME_ONLY"
+    });
 }
 
 if (Meteor.isServer) {

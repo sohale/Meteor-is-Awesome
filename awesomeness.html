@@ -11,10 +11,14 @@
       <header>
       <h1>Todo List</h1>
 
+{{#if currentUser}}
       <!-- add a form below the h1 -->
       <form class="new-message">
         <input type="text" name="text" placeholder="Type a message to broadcast" />
       </form>
+{{else}}
+      Please log in.
+{{/if}}
     </header>
 
     </header>
@@ -34,7 +38,7 @@
   <hr/>
     Neighbours list:
     <ul>
-      {{#each users}}
+      {{#each neighbour_users}}
         {{> auser}}
       {{/each}}
     </ul>
@@ -46,7 +50,7 @@
       {{/each}}
     </ul>
 
-    msglist
+{{> loginButtons}}
 
 </body>
 
