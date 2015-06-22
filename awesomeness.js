@@ -60,7 +60,7 @@ if (Meteor.isClient) {
     ,
     msglist: function () {
         //return MessagesTable.find({});
-        return MessagesTable.find({}, {sort: {createdAt: +1}});
+        return MessagesTable.find({}, {sort: {createdAt: -1},limit: 5}); //Recent on top
         //todo: read https://www.meteor.com/try/4   "Attaching events to templates"
     }
  
