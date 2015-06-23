@@ -3,11 +3,14 @@
 </head>
 
 <body>
-  <h1>Welcome to flopok LiveDecide</h1>
+  <!--<h1>Welcome to flopok LiveDecide</h1>-->
 
   <div class="container">
   <!-- no "tasks" -->
-
+  <h1>Welcome to flopoke </h1>
+  <br/>
+  (LiveDecide)
+  <br/>
   {{> hello}} {{> infobox}}  
   <hr/>
   {{#if currentUser}}
@@ -69,9 +72,9 @@
 </template>
 <template name="amessage">
    <li>
-      {{fromuid}}>{{touid}}
       <b>{{text}}</b>
-      {{createdAt}}
+      From:{{fromuid}}>{{touid}}
+      <!--{{formatDate createdAt}}-->
       <button>broadcast</button>
    </li>
 </template>

@@ -2,6 +2,12 @@
 UsersDB = new Mongo.Collection("nusers");
 MessagesTable = new Mongo.Collection("messages");
 
+    if (Meteor.isClient){
+
+Template.registerHelper('formatDate', function(date) {
+  return moment(date).format('MM-DD-YYYY');
+});
+}
 function sync_you(){
     //Error: Meteor.userId can only be invoked in method calls. Use this.userId in publish functions.
     if (Meteor.isClient){
@@ -191,6 +197,8 @@ Template.body.events({
       passwordSignupFields: "USERNAME_ONLY"
     });
 }
+
+
 
 if (Meteor.isServer) {
   Meteor.startup(function () {
