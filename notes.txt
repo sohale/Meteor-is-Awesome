@@ -1,0 +1,155 @@
+//UsersDB = new Mongo.Collection("users"); //we simply cannot access this table, so we use another one.
+
+
+{{> hello}}
+{{> infobox}}  
+<hr/>
+
+
+<template name="hello">
+  <button>Click counter</button>: You've pressed this button {{counter}} times.
+</template>
+Is this done on the serverside too?
+
+<template name="infobox">
+  Infobox: <button>show info</button>
+</template>
+
+<template name="task">
+  wot {{text}}
+</template>
+
+removed
+
+{{> pokert}}
+
+<template name="pokert">
+  <button> Poke {{userpp}}</button>
+  <!-- user is taken from helper?-->
+</template>
+
+
+js
+  Template.hello.helpers({
+    counter: function () {
+      return Session.get('counter');
+    }
+  });
+
+  Template.hello.events({
+    'click button': function () {
+      // increment the counter when button is clicked
+      Session.set('counter', Session.get('counter') + 1);
+    }
+  });
+
+
+    /*
+  Template.body.helpers({
+    tasks: [
+      { text: "This is task 1" },
+      { text: "This is task 2" },
+      { text: "This is task 3" }
+    ]
+  });
+  */
+
+
+  Template.infobox.events({
+    'click button': function () {
+          var keys = Object.keys(Template.infobox);
+          alert( JSON.stringify(keys) );
+    }
+  });
+
+  Template.pokert.events({
+    'click button': function () {
+        alert( "You poked ");// + Template.pokert.get('getuname') );
+    }
+  });
+  Template.pokert.helpers({
+    userpp: function () {
+      return "person 1";
+    }
+  });
+
+
+
+    //users: [
+    //  { uid: 121, uname: "sebastian" },
+    //  { uid: 122, uname: "joe" },
+    //  { uid: 124, uname: "julia" }
+    //]
+
+        //return MessagesTable.find({});
+
+
+
+if (Meteor.isClient) {
+  //Initialisation
+  // counter starts at 0
+  Session.setDefault('counter', 0);
+...
+}
+
+
+
+UPSERT ATTEMPTS
+===============
+
+/*
+upsert({
+    u_id: Meteor.userId(), //original "_id"
+    uname: Meteor.user().username,
+    neighbs:{}
+});
+*/
+
+        
+//todo: 
+How to "Attaching events to templates"
+read https://www.meteor.com/try/4
+
+return MessagesTable.find({}, {sort: {createdAt: -1},limit: 5}); //Recent on top
+
+
+Message attributes:
+      //Who owns it, who has visibnility, who can ref to as tracker (everyone)
+
+    MessagesTable.insert({
+      touid: receiver_uid,
+      fromuid: sender_uid,
+      text: text,
+      createdAt: new Date(), // current time
+
+      //The "you" user
+      //owner: Meteor.userId(),           // _id of logged in user
+      //username: Meteor.user().username  // username of logged in user
+
+    });
+
+
+
+    orig_id = Meteor.userId(); //original "_id"
+    //orig_uname: Meteor.user().username;
+    //UsersDB.insert({orig_id:orig_id, uname:orig_uname});
+    //username: Meteor.user().username
+    // username of logged in user
+
+
+
+todo:
+/*
+  //Message operations
+  Template.amessage.events({
+    'click button': function () {
+        alert("forward message (broadcast to neighbours)");
+    }
+  });
+  //todo: chekcbox: only received messages. Only original messages. (ref: original from whom to whom: messages PK)
+*/
+
+A meesage has:
+The message "ref" points to an original from whom to whom: The ref is the _id (PK) of messages.
+
+

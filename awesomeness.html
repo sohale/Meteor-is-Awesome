@@ -3,19 +3,12 @@
 </head>
 
 <body>
-  <!--<h1>Welcome to flopok LiveDecide</h1>-->
-
   <div class="container">
-  <!-- no "tasks" -->
   <h1>Welcome to flopoke </h1>
   <br/>
-  (LiveDecide)
-  <br/>
-  {{> hello}} {{> infobox}}  
-  <hr/>
+  <!--(LiveDecide)-->
   {{#if currentUser}}
 
-      {{> pokert}}
       Vote: <button>1</button><button>2</button><button>3</button>
 
       <hr/>
@@ -55,22 +48,6 @@
 
 </body>
 
-<template name="hello">
-  <button>Click counter</button>: You've pressed this button {{counter}} times.
-</template>
-
-<template name="infobox">
-  Infobox: <button>show info</button>
-</template>
-
-<template name="task">
-  wot {{text}}
-</template>
-
-<template name="pokert">
-  <button> Poke {{userpp}}</button>
-  <!-- user is taken from helper?-->
-</template>
 
 <template name="auser">
    <li><b>{{uname}}</b><button>poke</button> (User {{orig_id}}) </li> <!-- Taken from the json-->
