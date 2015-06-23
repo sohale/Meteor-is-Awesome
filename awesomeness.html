@@ -7,38 +7,42 @@
 
   <div class="container">
   <!-- no "tasks" -->
-  </div>
 
-  {{> hello}} {{> infobox}}
+  {{> hello}} {{> infobox}}  
   <hr/>
+  {{#if currentUser}}
+
   {{> pokert}}
   Vote: <button>1</button><button>2</button><button>3</button>
 
   <hr/>
     Neighbours list:
     <ul>
-      {{#each neighbour_users}}
-        {{> auser}}
+      {{#each users}}
+        {{>auser}}
       {{/each}}
     </ul>
  <hr/>
      Message box:
-{{#if currentUser}}
       <!-- add a form below the h1 -->
       <form class="new-message">
         <input type="text" name="text" placeholder="Type a message to broadcast" />
       </form>
-{{else}}
-      Please log in.
-{{/if}}
 
     <ul>
+    <!-- security issue: content hidden on clientside when not current user -->
       {{#each msglist}}
         {{> amessage}}
       {{/each}}
     </ul>
 
+{{else}}
+      Please log in.
+{{/if}}
+
 {{> loginButtons}}
+
+  </div>
 
 </body>
 
@@ -55,12 +59,13 @@
 </template>
 
 <template name="pokert">
-  <button> Poke {{user}}</button>
+  <button> Poke {{userpp}}</button>
   <!-- user is taken from helper?-->
 </template>
 
 <template name="auser">
-   <li><b>{{uname}}</b><button>poke</button> (User {{uid}}) </li> <!-- Taken from the json-->
+   <li><b>{{uname}}</b><button>poke</button> (User {{orig_id}}) </li> <!-- Taken from the json-->
+   <!-- We canno access the main 'users' table-->
 </template>
 <template name="amessage">
    <li>

@@ -1,5 +1,66 @@
-UsersDB = new Mongo.Collection("neighbour_users");
+//UsersDB = new Mongo.Collection("users"); //we simply cannot access this table, so we use another one.
+UsersDB = new Mongo.Collection("nusers");
 MessagesTable = new Mongo.Collection("messages");
+
+function sync_you(){
+    //Error: Meteor.userId can only be invoked in method calls. Use this.userId in publish functions.
+    if (Meteor.isClient){
+    //alert(Meteor.user().username);
+    }
+
+    orig_id = Meteor.userId(); //original "_id"
+    orig_uname: Meteor.user().username;
+    //z=UsersDB.find({orig_id:orig_id});
+    //Stores public info only:
+    //manually
+    //db.neighbour_users.insert({orig_id:'pkfsZatWwSdYpuebc', uname:'sosi', neighbours:{}});
+    //cannot be done on the client side
+    //if (Meteor.isServer){
+    //UsersDB.insert({orig_id:orig_id, uname:orig_uname});
+    //}
+    if (Meteor.isClient){
+    //UsersDB.insert({orig_id:orig_id, uname:orig_uname});
+    }
+    //if (Meteor.isClient){
+    ////alert(); //(JSON.stringify(z));
+    //}
+
+/* upsert causes a silent error:
+//http://stackoverflow.com/questions/19555473/how-to-use-meteor-upsert
+UsersDB.upsert(
+{
+  // Selector
+    u_id: Meteor.userId(), //original "_id"
+    //uname: Meteor.user().username,
+},
+{
+  // Modifier
+  $set: {
+    u_id: Meteor.userId(), //original "_id"
+    uname: Meteor.user().username,
+
+      neighbs:{},
+      lastsynctime: Date.now()
+  }
+}
+
+);
+*/
+    if (Meteor.isClient){
+    alert(Meteor.user().username +' done');
+}
+
+/*
+
+upsert({
+    u_id: Meteor.userId(), //original "_id"
+    uname: Meteor.user().username,
+    neighbs:{}
+});
+*/
+}
+
+//    callme();
 
 if (Meteor.isClient) {
   // counter starts at 0
@@ -44,16 +105,17 @@ if (Meteor.isClient) {
     }
   });
   Template.pokert.helpers({
-    user: function () {
+    userpp: function () {
       return "person 1";
     }
   });
 
 
   Template.body.helpers({
-    neighbour_users: function () {
+    users: function () {
         return UsersDB.find({});
     }
+
     //users: [
     //  { uid: 121, uname: "sebastian" },
     //  { uid: 122, uname: "joe" },
@@ -74,9 +136,18 @@ Template.body.events({
   "submit .new-message": function (event) {
     // This function is called when the new ... form is submitted
 
+    //sync_you();
+
+
+    orig_id = Meteor.userId(); //original "_id"
+    //orig_uname: Meteor.user().username;
+    //UsersDB.insert({orig_id:orig_id, uname:orig_uname});
+
     var text = event.target.text.value;
     var receiver_uid = 30;
-    var sender_uid = 5;
+    var sender_uid = orig_id;
+
+
 
     MessagesTable.insert({
       touid: receiver_uid,
@@ -85,8 +156,9 @@ Template.body.events({
       createdAt: new Date(), // current time
 
       //The "you" user
-      owner: Meteor.userId(),           // _id of logged in user
-      username: Meteor.user().username  // username of logged in user
+      //owner: Meteor.userId(),           // _id of logged in user
+      //username: Meteor.user().username  // username of logged in user
+      //Who owns it, who has visibnility, who can ref to as tracker (everyone)
     });
 
     // Clear form
@@ -125,3 +197,8 @@ if (Meteor.isServer) {
     // code to run on server at startup
   });
 }
+
+
+//mutating the [[Prototype]] of an object will cause your code to run very slowly; instead create the object with the correct initial [[Prototype]] value using Object.create
+
+//todo: Don't show
