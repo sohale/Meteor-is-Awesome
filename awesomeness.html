@@ -15,29 +15,35 @@
   <hr/>
   {{#if currentUser}}
 
-  {{> pokert}}
-  Vote: <button>1</button><button>2</button><button>3</button>
+      {{> pokert}}
+      Vote: <button>1</button><button>2</button><button>3</button>
 
-  <hr/>
-    Neighbours list:
-    <ul>
-      {{#each users}}
-        {{>auser}}
-      {{/each}}
-    </ul>
- <hr/>
-     Message box:
-      <!-- add a form below the h1 -->
-      <form class="new-message">
-        <input type="text" name="text" placeholder="Type a message to broadcast" />
-      </form>
+      <hr/>
+        Neighbours list:
+        <ul>
+          {{#each users}}
+            {{>auser}}
+          {{/each}}
+        </ul>
+     <hr/>
+         Message box:
+          <!-- add a form below the h1 -->
+          <form class="new-message">
+            <input type="text" name="text" placeholder="Type a message to broadcast" />
+          </form>
 
-    <ul>
-    <!-- security issue: content hidden on clientside when not current user -->
-      {{#each msglist}}
-        {{> amessage}}
-      {{/each}}
-    </ul>
+        <ul>
+        <!-- security issue: content hidden on clientside when not current user -->
+          {{#each msglist}}
+            {{> amessage}}
+          {{/each}}
+        </ul>
+
+    <hr/>
+    <b>Browse users:</b>
+          {{#each users}}
+            {{>all1user}}
+          {{/each}}
 
 {{else}}
       Please log in.
@@ -69,6 +75,10 @@
 <template name="auser">
    <li><b>{{uname}}</b><button>poke</button> (User {{orig_id}}) </li> <!-- Taken from the json-->
    <!-- We canno access the main 'users' table-->
+</template>
+
+<template name="all1user">
+&nbsp; {{uname}}<button>add</button>
 </template>
 <template name="amessage">
    <li>
