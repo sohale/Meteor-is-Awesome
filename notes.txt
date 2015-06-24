@@ -195,3 +195,42 @@ found it out!
 Meteor.users
 It is the next step.
 
+Q:
+Is working directly with table of users (on FE) secure?
+
+
+http://meteortips.com/first-meteor-tutorial/forms/
+
+event.type
+
+event.preventDefault();
+prevent refresh
+
+
+taking control of links:
+'click a': function(event){
+    event.preventDefault();
+}
+
+simple!
+a controller and a reader.
+
+pre-value
+event.target.playerName
+fetch:
+event.target.playerName.value;
+
+submit isbette than click
+
+ attach a unique class attribute to it 
+
+
+ var selectedPlayer = Session.get('selectedPlayer');
+
+
+    var selectedPlayer = Session.get('selectedPlayer');
+    PlayersList.remove(selectedPlayer);
+
+I read this
+http://meteortips.com/first-meteor-tutorial/forms/
+
