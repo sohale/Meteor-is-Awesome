@@ -403,3 +403,7 @@ f=Neighbourship.find({'who':Meteor.userId()},{'friend':true}).fetch()
 _.pluck(a,'friend')
 
 http://iamnotachoice.com/using-mongodb-requires-thinking-mongodb-live-queries-also-help/
+
+
+added bootstrap
+

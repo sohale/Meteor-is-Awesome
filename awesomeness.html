@@ -49,26 +49,33 @@
 
 
 <template name="auser">
-    <li>
+    <!--li-->
+    <div class="row">
         <b>{{username}}</b>
         <button>poke</button>
         (User {{_id}})
-    </li>
+    </div>
+    <!--/li-->
     <!-- Taken from the json-->
     <!-- We canno access the main 'users' table-->
 </template>
 
 <template name="all1user">
+    <span class="col-lg-2">
     &nbsp; {{username}}
     <button>add</button>
     <!-- {{_id}} -->
+    </span>
 </template>
 
 <template name="amessage">
-    <li>
+    <!--li-->
+        <div class="row">
+
         <b>{{text}}</b>
         From:{{fromuid}}>{{touid}}
         <!--{{formatDate createdAt}}-->
         <button>broadcast</button>
-    </li>
+        </div>
+    <!--/li-->
 </template>
