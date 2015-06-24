@@ -153,3 +153,45 @@ A meesage has:
 The message "ref" points to an original from whom to whom: The ref is the _id (PK) of messages.
 
 
+
+Main theme:
+A "product" will be "shared". It appears in other people's. The source (or maybe the initiator) is in the data.
+
+intention only after decision.
+
+
+A product is a poke, a message, potentially a voice message, [like,] or emoticon. [Like is not independent.]
+
+
+
+What is Tabular?
+
+Tabular
+https://github.com/aldeed/meteor-tabular/issues/9
+
+Meteor.isClient && Template.registerHelper("TabularTables", TabularTables);
+
+
+js console:
+q= new Mongo.Collection("users");
+Error: There is already a collection named 'users'
+
+give points
+
+decide together (live) [dilmaj style]
+
+use:
+Session.get and set
+
+
+in event:
+
+var playerId = this._id;
+
+this._id   ----> Session.set ----> ...
+
+
+found it out!
+Meteor.users
+It is the next step.
+
