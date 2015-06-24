@@ -1,68 +1,74 @@
 <head>
-  <title>flo-pok</title>
+    <title>flo-pok</title>
 </head>
 
 <body>
-  <div class="container">
-  <h1>Welcome to flopoke </h1>
-  <br/>
-  <!--(LiveDecide)-->
-  {{#if currentUser}}
+    <div class="container">
+    <h1>Welcome to flopoke </h1><br/>
+    <!--(LiveDecide)-->
+    {{#if currentUser}}
 
-      Vote: <button>1</button><button>2</button><button>3</button>
 
-      <hr/>
-        Neighbours list:
+        Vote: 
+        <button>1</button>
+        <button>2</button>
+        <button>3</button>
+        <hr/>
+
+        <h3>Neighbours list:</h3>
         <ul>
-          {{#each nusers}}
-            {{>auser}}
-          {{/each}}
+            {{#each nusers}}
+                {{>auser}}
+            {{/each}}
         </ul>
-     <hr/>
-         Message box:
-          <!-- add a form below the h1 -->
-          <form class="new-message">
+        <hr/>
+        <h3>Message box:</h3>
+        <form class="new-message">
             <input type="text" name="text" placeholder="Type a message to broadcast" />
-          </form>
-
+        </form>
         <ul>
-        <!-- security issue: content hidden on clientside when not current user -->
-          {{#each msglist}}
-            {{> amessage}}
-          {{/each}}
+            <!-- security issue: content hidden on clientside when not current user -->
+            {{#each msglist}}
+                {{> amessage}}
+            {{/each}}
         </ul>
-
-    <hr/>
-    <b>Browse users:</b>
-          {{#each users}}
+        <hr/>
+        <h3>Browse users:</h3>
+        {{#each users}}
             {{>all1user}}
-          {{/each}}
+        {{/each}}
 
-{{else}}
-      Please log in.
-{{/if}}
+    {{else}}
+        Please log in.
+    {{/if}}
 
-{{> loginButtons}}
+    {{> loginButtons}}
 
   </div>
-
 </body>
 
 
 <template name="auser">
-   <li><b>{{username}}</b><button>poke</button> (User {{_id}}) </li> <!-- Taken from the json-->
-   <!-- We canno access the main 'users' table-->
+    <li>
+        <b>{{username}}</b>
+        <button>poke</button>
+        (User {{_id}})
+    </li>
+    <!-- Taken from the json-->
+    <!-- We canno access the main 'users' table-->
 </template>
 
 <template name="all1user">
-&nbsp; {{username}}<button>add</button><!-- {{_id}} -->
-</template>
-<template name="amessage">
-   <li>
-      <b>{{text}}</b>
-      From:{{fromuid}}>{{touid}}
-      <!--{{formatDate createdAt}}-->
-      <button>broadcast</button>
-   </li>
+    &nbsp; {{username}}
+    <button>add</button>
+    <!-- {{_id}} -->
 </template>
 
+<template name="amessage">
+    <li>
+        <b>{{text}}</b>
+        From:{{fromuid}}>{{touid}}
+        <!--{{formatDate createdAt}}-->
+        <button>broadcast</button>
+    </li>
+</template>
