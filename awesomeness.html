@@ -4,7 +4,7 @@
 
 <body>
     <div class="container">
-    <h1>Welcome to flopoke </h1><br/>
+    <h1>flopoke </h1><br/>
     <!--(LiveDecide)-->
     {{#if currentUser}}
 
@@ -37,6 +37,24 @@
         {{#each users}}
             {{>all1user}}
         {{/each}}
+          <ul class="pagination">
+    <li>
+      <a href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li>
+      <a href="#" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+        <br/>
 
     {{else}}
         Please log in.
@@ -52,8 +70,9 @@
     <!--li-->
     <div class="row">
         <b>{{username}}</b>
-        <button>poke</button>
+        <button class="poke1">poke</button>
         (User {{_id}})
+        <button class="remove1">remove</button>
     </div>
     <!--/li-->
     <!-- Taken from the json-->
@@ -63,7 +82,8 @@
 <template name="all1user">
     <span class="col-lg-2">
     &nbsp; {{username}}
-    <button>add</button>
+    <button type="button" class="btn btn-default btn-sm" 
+    >add</button>
     <!-- {{_id}} -->
     </span>
 </template>
@@ -75,7 +95,7 @@
         <b>{{text}}</b>
         From:{{fromuid}}>{{touid}}
         <!--{{formatDate createdAt}}-->
-        <button>broadcast</button>
+        <button type="button" class="btn btn-default btn-sm" >broadcast</button>
         </div>
     <!--/li-->
 </template>

@@ -74,8 +74,22 @@ if (Meteor.isClient) {
 
 
     Template.auser.events({
-      'click button': function () {
-          event.preventDefault();
+      'click .remove1': function () {
+          //alert("poke done"); <!-- How to pass the properties of each user?-->
+
+          //REMOVE
+          var your_id = Meteor.userId();
+          var friend_id = this._id; //clicked to-be-friend person
+
+          var neighbours = Neighbourship.find({'who':your_id, 'friend':friend_id},{}).fetch();
+          
+          var friendship_id = neighbours[0]._id;
+          console.log(friendship_id);
+          Neighbourship.remove({'_id':friendship_id});
+          //event.target.text.value
+
+      },
+      'click .poke1': function () {
           alert("poke done"); <!-- How to pass the properties of each user?-->
       }
     });

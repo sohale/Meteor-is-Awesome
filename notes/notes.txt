@@ -407,3 +407,8 @@ http://iamnotachoice.com/using-mongodb-requires-thinking-mongodb-live-queries-al
 
 added bootstrap
 
+
+
+'click .poke1':
+      instead of
+'click button .poke1':

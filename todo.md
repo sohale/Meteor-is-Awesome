@@ -41,3 +41,11 @@ fix dilema of message receiver.
 
 Bootstrap the right way: (read and apply)
 http://www.manuel-schoebel.com/blog/meteorjs-and-twitter-bootstrap---the-right-way
+
+
+todo:
+rename auser to nbruser
+
+
+todo:
+reflecting after removing is very slow.
