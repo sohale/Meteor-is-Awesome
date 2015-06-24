@@ -49,3 +49,10 @@ rename auser to nbruser
 
 todo:
 reflecting after removing is very slow.
+
+
+todo: remove ---> <a> link
+
+
+use bootstrap linked coloured rows
+Show # of votes

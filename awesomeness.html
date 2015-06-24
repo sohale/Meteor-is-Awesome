@@ -3,8 +3,37 @@
 </head>
 
 <body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+       <div class="navbar-inner">
+<div class="container">
+           <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+             <span class="icon-bar"></span>
+           </button>
+           <a class="brand" href="#">floPoke</a>
+           <div class="nav-collapse collapse">
+             <ul class="nav">
+               <li class="active"><a href="#">Home</a></li>
+               <li><a href="#about">About</a></li>
+               <li><a href="#contact">Contact</a></li>
+             </ul>
+           </div><!--/.nav-collapse -->
+         </div>
+       </div>
+     </div>
+
     <div class="container">
-    <h1>flopoke </h1><br/>
+    <h1><!--flopoke-->
+<span class="label label-danger">F</span
+><span class="label label-warning">l</span
+><span class="label label-info">o</span
+><span class="label label-success">P</span
+><span class="label label-primary">o</span
+><span class="label label-default">k</span>
+</h1><br/>
+
     <!--(LiveDecide)-->
     {{#if currentUser}}
 
@@ -22,42 +51,41 @@
             {{/each}}
         </ul>
         <hr/>
-        <h3>Message box:</h3>
-        <form class="new-message">
-            <input type="text" name="text" placeholder="Type a message to broadcast" />
-        </form>
-        <ul>
-            <!-- security issue: content hidden on clientside when not current user -->
-            {{#each msglist}}
-                {{> amessage}}
+
+
+        <div class="panel  panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Message box</h3>
+            </div>
+            <div class="panel-body">
+                <form class="new-message">
+                    <input type="text" name="text" placeholder="Type a message to broadcast" />
+                </form>
+                <ul  class="list-group">
+                    <!-- security issue: content hidden on clientside when not current user -->
+                    {{#each msglist}}
+                        {{> amessage}}
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+
+        <div role="navigation">
+            <h3>Browse users:</h3>
+            {{#each users}}
+                {{>all1user}}
             {{/each}}
-        </ul>
-        <hr/>
-        <h3>Browse users:</h3>
-        {{#each users}}
-            {{>all1user}}
-        {{/each}}
-          <ul class="pagination">
-    <li>
-      <a href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">5</a></li>
-    <li>
-      <a href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-        <br/>
+
+
+
+
+        </div>
 
     {{else}}
-        Please log in.
+
+        <div class="alert alert-warning" role="alert">
+        Please log in or wait.
+        </div>
     {{/if}}
 
     {{> loginButtons}}
@@ -89,13 +117,12 @@
 </template>
 
 <template name="amessage">
-    <!--li-->
-        <div class="row">
-
+    <li class="list-group-item list-group-item-info">
+        <!--div class="row"-->
         <b>{{text}}</b>
         From:{{fromuid}}>{{touid}}
         <!--{{formatDate createdAt}}-->
         <button type="button" class="btn btn-default btn-sm" >broadcast</button>
-        </div>
-    <!--/li-->
+        <!--/div-->
+    </li>
 </template>
