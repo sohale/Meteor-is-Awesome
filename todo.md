@@ -62,3 +62,6 @@ todo:
 Add the navbar back after making SPA multiplage.
 Pages: Explore (users)
 About: .
+
+
+todo: message FROM shows username

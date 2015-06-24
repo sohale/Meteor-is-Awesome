@@ -16,13 +16,6 @@
     <!--(LiveDecide)-->
     {{#if currentUser}}
 
-
-        Vote: 
-        <button>1</button>
-        <button>2</button>
-        <button>3</button>
-        <hr/>
-
         <h3>Neighbours list:</h3>
         <ul>
             {{#each nusers}}
@@ -49,25 +42,32 @@
             </div>
         </div>
 
+        {{> loginButtons}}
+
         <div role="navigation">
             <h3>Browse users:</h3>
             {{#each users}}
                 {{>all1user}}
             {{/each}}
-
-
-
-
         </div>
-
+        <hr/>
+        Under progress:
+        <div>
+            Vote: 
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <hr/>
+        </div>
     {{else}}
 
         <div class="alert alert-warning" role="alert">
         Please log in or wait.
         </div>
+        {{> loginButtons}}
+
     {{/if}}
 
-    {{> loginButtons}}
 
   </div>
 </body>
@@ -78,7 +78,7 @@
     <div class="row">
         <b>{{username}}</b>
         <button class="poke1">poke</button>
-        (User {{_id}})
+        <!--(User {{_id}})-->
         <button class="remove1">remove</button>
     </div>
     <!--/li-->
@@ -99,9 +99,9 @@
     <li class="list-group-item list-group-item-info">
         <!--div class="row"-->
         <b>{{text}}</b>
-        From:{{fromuid}}>{{touid}}
         <!--{{formatDate createdAt}}-->
         <button type="button" class="btn btn-default btn-sm" >broadcast</button>
+        From:{{fromuid}}>>{{touid}}
         <!--/div-->
     </li>
 </template>
