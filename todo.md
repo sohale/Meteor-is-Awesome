@@ -56,3 +56,9 @@ todo: remove ---> <a> link
 
 use bootstrap linked coloured rows
 Show # of votes
+
+
+todo:
+Add the navbar back after making SPA multiplage.
+Pages: Explore (users)
+About: .
