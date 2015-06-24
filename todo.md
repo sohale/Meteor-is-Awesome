@@ -21,3 +21,12 @@ neighbours are: key:value where keys are the list of neighbours PKs
 search & prev next
 for browse members
 
+
+
+data consistency test: bidirectionality
+
+test: not friend of self
+
+
+
+Todo: dont insert twice

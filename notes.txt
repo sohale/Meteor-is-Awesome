@@ -234,3 +234,172 @@ submit isbette than click
 I read this
 http://meteortips.com/first-meteor-tutorial/forms/
 
+
+
+
+
+
+
+
+
+
+removed  code
+
+function sync_logged_user(){
+    //Error: Meteor.userId can only be invoked in method calls. Use this.userId in publish functions.
+    if (Meteor.isClient){
+        //alert(Meteor.user().username);
+    }
+
+    orig_id = Meteor.userId(); //original "_id"
+    orig_uname: Meteor.user().username;
+    //z=UsersDB.find({orig_id:orig_id});
+    //Stores public info only:
+    //manually
+    //db.neighbour_users.insert({orig_id:'pkfsZatWwSdYpuebc', uname:'sosi', neighbours:{}});
+    //cannot be done on the client side
+    //if (Meteor.isServer){
+    //UsersDB.insert({orig_id:orig_id, uname:orig_uname});
+    //}
+    if (Meteor.isClient){
+        //UsersDB.insert({orig_id:orig_id, uname:orig_uname});
+    }
+    //if (Meteor.isClient){
+    ////alert(); //(JSON.stringify(z));
+    //}
+
+    /* upsert causes a silent error:
+    //http://stackoverflow.com/questions/19555473/how-to-use-meteor-upsert
+    UsersDB.upsert(
+    {
+      // Selector
+        u_id: Meteor.userId(), //original "_id"
+        //uname: Meteor.user().username,
+    },
+    {
+      // Modifier
+      $set: {
+        u_id: Meteor.userId(), //original "_id"
+        uname: Meteor.user().username,
+
+          neighbs:{},
+          lastsynctime: Date.now()
+      }
+    }
+
+    );
+    */
+
+    if (Meteor.isClient) {
+        alert(Meteor.user().username +' done');
+    }
+
+}
+
+//    sync_logged_user();
+
+
+===============================
+
+
+
+UsersDB
+will be renamed to:
+Neighbourship
+[which is actually a graph]
+
+
+
+          ka = keys(yourN.neighbours); //a list of strings
+
+
+
+http://docs.mongodb.org/manual/tutorial/model-referenced-one-to-many-relationships-between-documents/
+
+
+many-to-many in mongo
+
+          var you = Meteor.userId();
+          var yourN= Neighbourship.find({'orig_id':you}).fetch();
+          var a=[]
+          for(k in yourN.neighbours)
+              var friendship = yourN.neighbours[k]
+              var them = Meteor.users.find({'_id':k});
+              a.append(them);
+         return a;
+INSTEAD:
+         return Meteor.users.find({username: {$in: yourN.neighbours}})
+
+
+
+mongo:
+save
+versus
+insert
+
+many to many:
+http://seanhess.github.io/2012/02/01/mongodb_relational.html
+
+          var you = Meteor.userId();
+          var yourN= Neighbourship.find({'orig_id':you}).fetch();
+          alert(JSON.stringify( [yourN[0],yourN[0]['neighbours']] ))
+          //return Meteor.users.find({username: {$in: yourN.neighbours}})
+          return Meteor.users.find({username: {$in: yourN.neighbours}})
+
+note: [0]
+
+
+          var yourN= Neighbourship.find({'orig_id':you}).fetch();
+          alert(JSON.stringify( [yourN[0],yourN[0]['neighbours']] ))
+          return Meteor.users.find({username: {$in: yourN[0].neighbours}})
+
+
+
+          var you = Meteor.userId();
+          var yourN= Neighbourship.find({'orig_id':you}).fetch()[0];
+          alert(JSON.stringify( [yourN,yourN['neighbours']] ))
+          return Meteor.users.find({username: {$in: yourN.neighbours}})
+
+
+
+
+
+
+http://blog.mongodb.org/post/87200945828/6-rules-of-thumb-for-mongodb-schema-design-part-1
+
+
+{name:"Joe"
+,roles:["Admin","User","Engineer"]
+}
+
+To get all the Engineers, use:
+
+db.things.find( { roles : "Engineer" } );
+
+
+
+how to define an index
+
+http://blog.markstarkman.com/blog/2011/09/15/mongodb-many-to-many-relationship-data-modeling/
+
+
+http://blog.markstarkman.com/blog/2011/09/15/mongodb-many-to-many-relationship-data-modeling/
+
+
+http://docs.mongodb.org/manual/reference/method/db.collection.insert/
+
+
+http://meteortips.com/first-meteor-tutorial/structure/
+
+
+
+Meteor.publish('courses',function
+
+http://stackoverflow.com/questions/19185439/how-to-publish-the-one-side-of-a-one-to-many-relationship-in-meteor-after-the
+
+
+f=Neighbourship.find({'who':Meteor.userId()},{'friend':true}).fetch()
+
+_.pluck(a,'friend')
+
+http://iamnotachoice.com/using-mongodb-requires-thinking-mongodb-live-queries-also-help/

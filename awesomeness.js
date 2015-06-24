@@ -1,4 +1,4 @@
-UsersDB = new Mongo.Collection("nusers");
+Neighbourship = new Mongo.Collection("neighb");
 MessagesTable = new Mongo.Collection("messages");
 
 if (Meteor.isClient){
@@ -6,58 +6,6 @@ if (Meteor.isClient){
       return moment(date).format('MM-DD-YYYY');
     });
 }
-function sync_logged_user(){
-    //Error: Meteor.userId can only be invoked in method calls. Use this.userId in publish functions.
-    if (Meteor.isClient){
-        //alert(Meteor.user().username);
-    }
-
-    orig_id = Meteor.userId(); //original "_id"
-    orig_uname: Meteor.user().username;
-    //z=UsersDB.find({orig_id:orig_id});
-    //Stores public info only:
-    //manually
-    //db.neighbour_users.insert({orig_id:'pkfsZatWwSdYpuebc', uname:'sosi', neighbours:{}});
-    //cannot be done on the client side
-    //if (Meteor.isServer){
-    //UsersDB.insert({orig_id:orig_id, uname:orig_uname});
-    //}
-    if (Meteor.isClient){
-        //UsersDB.insert({orig_id:orig_id, uname:orig_uname});
-    }
-    //if (Meteor.isClient){
-    ////alert(); //(JSON.stringify(z));
-    //}
-
-    /* upsert causes a silent error:
-    //http://stackoverflow.com/questions/19555473/how-to-use-meteor-upsert
-    UsersDB.upsert(
-    {
-      // Selector
-        u_id: Meteor.userId(), //original "_id"
-        //uname: Meteor.user().username,
-    },
-    {
-      // Modifier
-      $set: {
-        u_id: Meteor.userId(), //original "_id"
-        uname: Meteor.user().username,
-
-          neighbs:{},
-          lastsynctime: Date.now()
-      }
-    }
-
-    );
-    */
-
-    if (Meteor.isClient) {
-        alert(Meteor.user().username +' done');
-    }
-
-}
-
-//    sync_logged_user();
 
 if (Meteor.isClient) {
     //Initialisation
@@ -66,9 +14,26 @@ if (Meteor.isClient) {
     Template.body.helpers(
     {
        users: function () {
-          return UsersDB.find({});
-       }
-      ,
+          return Meteor.users.find({});
+       },
+       nusers: function () {
+        /*
+          var your_id = Meteor.userId();
+          var you = Neighbourship.find({'orig_id':your_id}).fetch()[0];
+          //alert(JSON.stringify( [you,you['neighbours']] ))
+          return Meteor.users.find({username: {$in: you.neighbours}})
+          */
+          var your_id = Meteor.userId();
+          var neighbours = Neighbourship.find({'who':your_id},{'friend':1}).fetch();
+          //alert(JSON.stringify( neighbours[0] ))
+          //return Meteor.users.find({username: {$in: neighbours}})
+          arr=_.pluck(neighbours,'friend')
+          console.log(JSON.stringify( arr ))
+          c=Meteor.users.find({_id: {$in: arr}})
+          console.log(JSON.stringify(c.fetch()))
+          return Meteor.users.find({_id: {$in: arr}})
+
+       },
       msglist: function () {
           return MessagesTable.find({}, {sort: {createdAt: -1},limit: 5}); //Recent on top
       }
@@ -113,6 +78,26 @@ if (Meteor.isClient) {
     Template.auser.events({
       'click button': function () {
           alert("poke done"); <!-- How to pass the properties of each user?-->
+      }
+    });
+
+    Template.all1user.events({
+      'click button': function (event) {
+          //failed. not a good design.
+          //var your_id = Meteor.userId();
+          //var you_l = Neighbourship.find({'orig_id':your_id});
+          //return Meteor.users.find({username: {$in: you.neighbours}})
+
+          //console.log(JSON.stringify( event )); //cyclic?
+          console.log(JSON.stringify(this._id));
+          //console.log(JSON.stringify(this));
+
+          var your_id = Meteor.userId();
+          var friend_id = this._id; //clicked to-be-friend person
+          //Neighbourship.save({'who':your_id,'friend':'?'});
+          Neighbourship.insert({'who':your_id,'friend':friend_id});
+          //event.target.text.value
+
       }
     });
 

@@ -14,7 +14,7 @@
       <hr/>
         Neighbours list:
         <ul>
-          {{#each users}}
+          {{#each nusers}}
             {{>auser}}
           {{/each}}
         </ul>
@@ -50,12 +50,12 @@
 
 
 <template name="auser">
-   <li><b>{{uname}}</b><button>poke</button> (User {{orig_id}}) </li> <!-- Taken from the json-->
+   <li><b>{{username}}</b><button>poke</button> (User {{_id}}) </li> <!-- Taken from the json-->
    <!-- We canno access the main 'users' table-->
 </template>
 
 <template name="all1user">
-&nbsp; {{uname}}<button>add</button>
+&nbsp; {{username}}<button>add</button><!-- {{_id}} -->
 </template>
 <template name="amessage">
    <li>
@@ -65,3 +65,4 @@
       <button>broadcast</button>
    </li>
 </template>
+
