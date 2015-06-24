@@ -30,3 +30,10 @@ test: not friend of self
 
 
 Todo: dont insert twice
+
+
+todo:
+remove user.
+
+todo:
+fix dilema of message receiver.

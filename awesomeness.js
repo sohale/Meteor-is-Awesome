@@ -45,9 +45,7 @@ if (Meteor.isClient) {
     Template.body.events({
       "submit .new-message": function (event) {
         // This function is called when the new ... form is submitted
-
-        //sync_you();
-
+        event.preventDefault();
 
         orig_id = Meteor.userId(); //original "_id"
         //orig_uname: Meteor.user().username;     // username of logged in user
@@ -77,13 +75,15 @@ if (Meteor.isClient) {
 
     Template.auser.events({
       'click button': function () {
+          event.preventDefault();
           alert("poke done"); <!-- How to pass the properties of each user?-->
       }
     });
 
     Template.all1user.events({
       'click button': function (event) {
-          //failed. not a good design.
+          event.preventDefault();
+          //The folowing failed: not a good design:
           //var your_id = Meteor.userId();
           //var you_l = Neighbourship.find({'orig_id':your_id});
           //return Meteor.users.find({username: {$in: you.neighbours}})
