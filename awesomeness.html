@@ -37,7 +37,7 @@
 
 
             <div class="panel  panel-primary">
-                <!--
+                <!--Requires Bootstrap 3
                 <div class="panel-heading">
                     <h3 class="panel-title">Message box</h3>
                 </div>
@@ -64,7 +64,7 @@
             {{#each allPublicUsers}}
                 {{>onePublicUser}}
             {{/each}}
-
+            <br/>
             {{> loginButtons}}
 
             <hr/>
@@ -122,10 +122,11 @@
 <template name="oneMessage">
     <li class="list-group-item list-group-item-info">
         <!--div class="row"-->
-        <b>{{text}}</b>
+        <big><b>{{text}}</b></big>
         <!--{{formatDate createdAt}}-->
-        <button type="button" class="btn btn-default btn-sm" >broadcast</button>
-        From:{{fromuid}}>>{{touid}}
+        <!-- broadcast only the received messages -->
+        <button type="button" class="btn btn-default btn-sm disabled" >broadcast</button>&nbsp;
+        <small><small><small><small>From:{{fromuid}}>>{{touid}}</small></small></small></small>
         <!--/div-->
     </li>
 </template>
