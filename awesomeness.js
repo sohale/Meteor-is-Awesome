@@ -1,6 +1,12 @@
 Neighbourship = new Mongo.Collection("neighb");
 MessagesTable = new Mongo.Collection("messages");
 
+/**************************\
+**                        **
+**    Client side code    **
+**                        **
+\**************************/
+
 if (Meteor.isClient){
     Template.registerHelper('formatDate', function(date) {
       return moment(date).format('MM-DD-YYYY');
@@ -10,13 +16,12 @@ if (Meteor.isClient){
 if (Meteor.isClient) {
     //Initialisation
 
-
     Template.body.helpers(
     {
-       users: function () {
+       allPublicUsers: function () {
           return Meteor.users.find({});
        },
-       nusers: function () {
+       allNeighbours: function () {
         /*
           var your_id = Meteor.userId();
           var you = Neighbourship.find({'orig_id':your_id}).fetch()[0];
@@ -34,7 +39,8 @@ if (Meteor.isClient) {
           return Meteor.users.find({_id: {$in: arr}})
 
        },
-       msglist: function () {
+       allMessagesView: function () {
+          //todo: lookup target username and report it back.
           return MessagesTable.find({}, {sort: {createdAt: -1},limit: 5}); //Recent on top
        }
 
@@ -74,11 +80,9 @@ if (Meteor.isClient) {
     });
 
 
-    Template.auser.events({
-      'click .remove1': function () {
-          //alert("poke done"); <!-- How to pass the properties of each user?-->
-
-          //REMOVE
+    Template.oneNeighbour.events({
+      'click .removeNeighbour': function () {
+          <!-- How to pass the properties of each user?-->
           var your_id = Meteor.userId();
           var friend_id = this._id; //clicked to-be-friend person
 
@@ -90,32 +94,25 @@ if (Meteor.isClient) {
           //event.target.text.value
 
       },
-      'click .poke1': function () {
-          alert("poke done"); <!-- How to pass the properties of each user?-->
+      'click .pokeNeighbour': function (event) {
+          // this.* comes from the herlper['allNeighbours'] -> function.
+          alert(this.username+" was poked."); <!-- How to pass the properties of each user?-->
       }
     });
 
-    Template.all1user.events({
-      'click button': function (event) {
+    Template.onePublicUser.events({
+      'click .addPublicAsNeighbour': function (event) {
+          <!-- Add a publicUser as a neighbour-->
           event.preventDefault();
-          //The folowing failed: not a good design:
-          //var your_id = Meteor.userId();
-          //var you_l = Neighbourship.find({'orig_id':your_id});
-          //return Meteor.users.find({username: {$in: you.neighbours}})
-
-          //console.log(JSON.stringify( event )); //cyclic?
           console.log(JSON.stringify(this._id));
-          //console.log(JSON.stringify(this));
 
           var your_id = Meteor.userId();
-          var friend_id = this._id; //clicked to-be-friend person
-          //Neighbourship.save({'who':your_id,'friend':'?'});
+          var friend_id = this._id; //clicked the to-be-friend person
           Neighbourship.insert({'who':your_id,'friend':friend_id});
           //event.target.text.value
-
+          console.log("Neighbour added.");
       }
     });
-
 
     // At the bottom of the client code
     Accounts.ui.config({

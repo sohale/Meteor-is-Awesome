@@ -2,128 +2,124 @@
     <title>flo-pok</title>
 </head>
 
-<!-- green: success  info:blue    warning:brown?/orange 
-messagebox was blue-->
 <body>
+    <big>
     <div class="container">
-    <h1><tt>flopoke</tt>
+
+        <!-- Header -->
+        <h1><tt>flopoke</tt>
          <span class="label label-danger label-lg">F</span
         ><span class="label label-warning">l</span
         ><span class="label label-info">o</span
-       ><small><small>.</small></small><span class="label label-success">P</span
+        ><small><small>.</small></small
+        ><span class="label label-success">P</span
         ><span class="label label-primary">o</span
         ><span class="label label-default">k</span>
-        </h1> <!--<br/> -->
-
-    <!--(LiveDecide)-->
-    {{#if currentUser}}
-
-        <div class="alert alert-warning" role="alert">
-        <!-- <h3> -->
-        <big>Neighbours list</big>
-        </div>
-
-        <ul>
-            {{#each nusers}}
-                {{>auser}}
-            {{/each}}
-        </ul>
-        <!--
-        <hr/>
-        -->
-
-        <div class="alert alert-info" role="alert">
-        <big>Message box</big>
-        </div>
+        <!--(LiveDecide)-->
+        </h1>
 
 
-        <div class="panel  panel-primary">
-            <!--
-            <div class="panel-heading">
-                <h3 class="panel-title">Message box</h3>
+        {{#if currentUser}}
+
+            <div class="alert alert-warning" role="alert">
+                <big>Neighbours list</big>
             </div>
-            -->
-            <div class="panel-body">
-                <form class="new-message">
-                    <input type="text" name="text" placeholder="Type a message to broadcast" />
-                </form>
-                <ul class="list-group">
-                    <!-- security issue: content hidden on clientside when not current user -->
-                    {{#each msglist}}
-                        {{> amessage}}
-                    {{/each}}
-                </ul>
+
+            <ul>
+                {{#each allNeighbours}}
+                    {{>oneNeighbour}}
+                {{/each}}
+            </ul>
+
+            <div class="alert alert-info" role="alert">
+            <big>Message box</big>
             </div>
-        </div>
-
-        <div class="alert alert-success" role="alert">
-        {{> loginButtons}}
-        </div>
 
 
-        <div class="alert alert-warning" role="alert">
-        <big>Browse users</big>
-        </div>
+            <div class="panel  panel-primary">
+                <!--
+                <div class="panel-heading">
+                    <h3 class="panel-title">Message box</h3>
+                </div>
+                -->
+                <div class="panel-body">
+                    <form class="new-message">
+                        <input type="text" name="text" placeholder="Type a message to broadcast" />
+                    </form>
 
-        <!-- <div role="navigation"> -->
-            <!--<h3>Browse users:</h3>-->
-            {{#each users}}
-                {{>all1user}}
+                    <ul class="list-group">
+                        <!-- security issue: content hidden on clientside when not current user -->
+                        {{#each allMessagesView}}
+                            {{> oneMessage}}
+                        {{/each}}
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="alert alert-warning" role="alert">
+                <big>Browse users</big>
+            </div>
+
+            {{#each allPublicUsers}}
+                {{>onePublicUser}}
             {{/each}}
-        <!-- </div> -->
-        <!-- <hr/> -->
-        <div class="alert alert-warning" role="alert">
-        Experimental (Under progress)
-        </div>
-        <div>
-            Vote: 
-            <button>1</button>
-            <button>2</button>
-            <button>3</button>
+
+            {{> loginButtons}}
+
             <hr/>
-        </div>
 
-  {{#if error}}
-    <p>Error: {{error.message}}</p>
-  {{/if}}
-  
-    {{else}}
+            <div class="alert alert-warning" role="alert">
+                Experimental feature (In progress)
+            </div>
+            <div>
+                Vote: 
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <hr/>
+            </div>
 
-        <div class="alert alert-warning" role="alert">
-        Please log in or wait.
-        </div>
-        {{> loginButtons}}
+            {{#if error}}
+                <p>Error: {{error.message}}</p>
+            {{/if}}
+              
+        {{else}}
+            <!-- The user has not logged in, or users table not loaded yet. -->
 
-    {{/if}}
+            <div class="alert alert-warning" role="alert">
+                Please log in or wait.
+            </div>
+            {{> loginButtons}}
+
+        {{/if}}
 
 
-  </div>
+    </div>
+    </big>
 </body>
 
 
-<template name="auser">
-    <li>
-    
+<template name="oneNeighbour">
+    <li>    
         <b>{{username}}</b>
-        <button class="poke1">poke</button>
+        <!-- Mixes the Bootstrap's class with Meteor's class-->
+        <button class="pokeNeighbour btn btn-default btn-lg">poke</button>
         <!--(User {{_id}})-->
-        <button class="remove1">remove</button>
-    
+        <button class="removeNeighbour  btn btn-default btn-lg">remove</button>
     </li>
-    <!-- Taken from the json-->
-    <!-- We canno access the main 'users' table-->
 </template>
 
-<template name="all1user">
+<template name="onePublicUser">
     <span class="col-lg-2">
     &nbsp; {{username}}
-    <button type="button" class="btn btn-default btn-sm" 
+    <button type="button" class="addPublicAsNeighbour btn btn-default btn-sm" 
     >add</button>
     <!-- {{_id}} -->
     </span>
 </template>
 
-<template name="amessage">
+<template name="oneMessage">
     <li class="list-group-item list-group-item-info">
         <!--div class="row"-->
         <b>{{text}}</b>

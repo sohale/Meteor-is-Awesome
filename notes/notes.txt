@@ -649,32 +649,39 @@ if (Meteor.isClient) {
 .
 
 
-======================
-hudl:
-sports analytics
-Deep Learning
-"Joe Blogs" : dataIQ
 
 
-JoeFindTalents
+<!-- green: success  info:blue    warning:brown?/orange 
+messagebox was blue-->
 
-Joe Burridge
-Incomplete
-Hackaphone
 
-NOT!
-hudl.co.uk
 
-2006
-MBA+Eng
-Nebraska
 
-174 DVDs
 
-OOOOH INTERNET
 
-92% market share!
-35'000 teams.  3.5 milion users
+CLEANUP
 
-world's largest labelled DB
+          event.preventDefault();
+          //The folowing failed: not a good design:
+          //var your_id = Meteor.userId();
+          //var you_l = Neighbourship.find({'orig_id':your_id});
+          //return Meteor.users.find({username: {$in: you.neighbours}})
+
+          //console.log(JSON.stringify( event )); //cyclic?
+          console.log(JSON.stringify(this._id));
+          //console.log(JSON.stringify(this));
+
+          var your_id = Meteor.userId();
+          var friend_id = this._id; //clicked to-be-friend person
+          //Neighbourship.save({'who':your_id,'friend':'?'});
+          Neighbourship.insert({'who':your_id,'friend':friend_id});
+          //event.target.text.value
+
+
+
+causes a cyclic... error
+
+          //console.log(JSON.stringify( event )); //cyclic?
+         //console.log(JSON.stringify(this));
+
 
