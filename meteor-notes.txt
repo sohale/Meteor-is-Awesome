@@ -1,7 +1,0 @@
-We have Templates
-helpers
-events
-Template has a (one) helpers and an events.
-The events and helpers (of a template) look like a function. Do they add? Or just replace?
-
-You have two objects: Sessions and Meteor
