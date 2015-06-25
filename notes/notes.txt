@@ -473,3 +473,208 @@ added bootstrap
 
 
 
+todo:
+geographical location for original messages.
+
+message-centric
+
+"to" is a location.
+
+map view
+open-layers view
+dots distribution (a json of local coordinates)
+
+
+
+
+find . |grep boot
+./local/build/programs/server/packages/bootstrap.js.map
+./local/build/programs/server/packages/bootstrap.js
+./local/build/programs/server/boot.js
+./local/build/programs/server/boot-utils.js
+./local/build/programs/web.browser/packages/bootstrap.js.map
+./local/build/programs/web.browser/packages/bootstrap.js
+./local/build/programs/web.browser/packages/bootstrap
+./local/build/programs/web.browser/packages/bootstrap/img
+./local/build/programs/web.browser/packages/bootstrap/img/glyphicons-halflings-white.png
+./local/build/programs/web.browser/packages/bootstrap/img/glyphicons-halflings.png
+
+
+
+
+<!-- green: success  info:blue    warning:brown?/orange 
+messagebox was blue-->
+
+
+
+todo:
+Multipage:
+1-geograoghic
+2-graph
+
+todo:
+messages dissappear (located/situational messages)
+
+todo:
+live teletype (neighbours)
+[also: map heartbeat]
+
+todo:
+paradigm:
+multi-scale executive systrem
+(slow = gamification)
+
+each page is one scale
+
+
+todo:
+some prediction
+(predictive)
+
+
+todo:
+-camera
+-voice
+-quickvoice
+-live broadcast voice
+
+todo:
+minimap:
+radar
+
+
+if (Meteor.isClient) {
+  Template.body.helpers({
+    loc: function () {
+      // return 0, 0 if the location isn't ready
+      return Geolocation.latLng() || { lat: 0, lng: 0 };
+    },
+    error: Geolocation.error
+  });
+}
+
+
+ReferenceError: Geolocation is not defined
+
+
+
+
+========================
+25 June 2015 - Thursday
+14:25 on bus
+
+No new features, just make this work better.
+
+New features:
+- Map
+   - Message location)
+- Radar
+- Graph
+- Pages
+
+Make this better:
+- [add] 
+   - adedd mutiplicity
+   - dont add already added
+   - pagination
+- Pages
+- Source
+   - Separate server / client
+- Android
+    [don't: You won't use it]
+- disable automatic publish & reprogram it.
+
+
+
+
+
+
+
+.
+
+
+  Template.body.helpers({
+    loc: function () {
+      console.log("location:");
+
+      // return 0, 0 if the location isn't ready
+      l= Geolocation.latLng() || { lat: 0, lng: 0 };
+      //console.log(JSON.stringify([l,Geolocation.latLng()]));
+      return l;
+    },
+    error: Geolocation.error
+
+.
+
+
+
+ReferenceError: Geolocation is not defined awesomeness.js:49:0
+
+
+
+        <!--
+        Needs to be online:
+          {{loc.lat}},{{loc.lng}}
+          <img src="http://maps.googleapis.com/maps/api/staticmap?center={{loc.lat}},{{loc.lng}}&zoom=15&size=600x300&maptype=roadmap&markers=color:blue%7C{{loc.lat}},{{loc.lng}}" />
+        -->
+
+
+
+/*
+if (Meteor.isClient) {
+  Template.body.helpers({
+    loc: function () {
+      console.log("location");
+      // return 0, 0 if the location isn't ready
+      return Geolocation.latLng() || { lat: 0, lng: 0 };
+    },
+    error: Geolocation.error
+  });
+}
+*/
+
+
+
+       loc: function () {
+           console.log("location");
+           // return 0, 0 if the location isn't ready
+           return Geolocation.latLng() || { lat: 0, lng: 0 };
+        },
+        
+        error:
+            Geolocation.error
+
+
+
+.
+
+
+======================
+hudl:
+sports analytics
+Deep Learning
+"Joe Blogs" : dataIQ
+
+
+JoeFindTalents
+
+Joe Burridge
+Incomplete
+Hackaphone
+
+NOT!
+hudl.co.uk
+
+2006
+MBA+Eng
+Nebraska
+
+174 DVDs
+
+OOOOH INTERNET
+
+92% market share!
+35'000 teams.  3.5 milion users
+
+world's largest labelled DB
+

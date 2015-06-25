@@ -65,3 +65,13 @@ About: .
 
 
 todo: message FROM shows username
+
+
+todo:
+geographical location for original messages.
+
+message-centric
+
+"to" is a location.
+
+Multipage

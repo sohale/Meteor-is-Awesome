@@ -2,38 +2,52 @@
     <title>flo-pok</title>
 </head>
 
+<!-- green: success  info:blue    warning:brown?/orange 
+messagebox was blue-->
 <body>
     <div class="container">
-    <h1>flopoke
-        <span class="label label-danger">F</span
+    <h1><tt>flopoke</tt>
+         <span class="label label-danger label-lg">F</span
         ><span class="label label-warning">l</span
         ><span class="label label-info">o</span
-        ><span class="label label-success">P</span
+       ><small><small>.</small></small><span class="label label-success">P</span
         ><span class="label label-primary">o</span
         ><span class="label label-default">k</span>
-        </h1><br/>
+        </h1> <!--<br/> -->
 
     <!--(LiveDecide)-->
     {{#if currentUser}}
 
-        <h3>Neighbours list:</h3>
+        <div class="alert alert-warning" role="alert">
+        <!-- <h3> -->
+        <big>Neighbours list</big>
+        </div>
+
         <ul>
             {{#each nusers}}
                 {{>auser}}
             {{/each}}
         </ul>
+        <!--
         <hr/>
+        -->
+
+        <div class="alert alert-info" role="alert">
+        <big>Message box</big>
+        </div>
 
 
         <div class="panel  panel-primary">
+            <!--
             <div class="panel-heading">
                 <h3 class="panel-title">Message box</h3>
             </div>
+            -->
             <div class="panel-body">
                 <form class="new-message">
                     <input type="text" name="text" placeholder="Type a message to broadcast" />
                 </form>
-                <ul  class="list-group">
+                <ul class="list-group">
                     <!-- security issue: content hidden on clientside when not current user -->
                     {{#each msglist}}
                         {{> amessage}}
@@ -42,16 +56,25 @@
             </div>
         </div>
 
+        <div class="alert alert-success" role="alert">
         {{> loginButtons}}
+        </div>
 
-        <div role="navigation">
-            <h3>Browse users:</h3>
+
+        <div class="alert alert-warning" role="alert">
+        <big>Browse users</big>
+        </div>
+
+        <!-- <div role="navigation"> -->
+            <!--<h3>Browse users:</h3>-->
             {{#each users}}
                 {{>all1user}}
             {{/each}}
+        <!-- </div> -->
+        <!-- <hr/> -->
+        <div class="alert alert-warning" role="alert">
+        Experimental (Under progress)
         </div>
-        <hr/>
-        Under progress:
         <div>
             Vote: 
             <button>1</button>
@@ -59,6 +82,11 @@
             <button>3</button>
             <hr/>
         </div>
+
+  {{#if error}}
+    <p>Error: {{error.message}}</p>
+  {{/if}}
+  
     {{else}}
 
         <div class="alert alert-warning" role="alert">
@@ -74,14 +102,14 @@
 
 
 <template name="auser">
-    <!--li-->
-    <div class="row">
+    <li>
+    
         <b>{{username}}</b>
         <button class="poke1">poke</button>
         <!--(User {{_id}})-->
         <button class="remove1">remove</button>
-    </div>
-    <!--/li-->
+    
+    </li>
     <!-- Taken from the json-->
     <!-- We canno access the main 'users' table-->
 </template>

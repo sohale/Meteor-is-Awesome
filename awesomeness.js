@@ -34,9 +34,10 @@ if (Meteor.isClient) {
           return Meteor.users.find({_id: {$in: arr}})
 
        },
-      msglist: function () {
+       msglist: function () {
           return MessagesTable.find({}, {sort: {createdAt: -1},limit: 5}); //Recent on top
-      }
+       }
+
     }
     );
 
@@ -121,6 +122,7 @@ if (Meteor.isClient) {
       passwordSignupFields: "USERNAME_ONLY"
     });
 }
+
 
 /**************************\
 **                        **
