@@ -685,3 +685,121 @@ causes a cyclic... error
          //console.log(JSON.stringify(this));
 
 
+
+
+
+
+sohail@sohail-Latitude-E4200:~/cs/meteor/awesomeness$ 
+sohail@sohail-Latitude-E4200:~/cs/meteor/awesomeness$ meteor add nemo64:bootstrap
+                                              
+Changes to your project's package version selections:
+                                              
+nemo64:bootstrap       added, version 3.3.4_2 
+nemo64:bootstrap-data  added, version 3.3.4_1
+
+                                              
+nemo64:bootstrap: Highly configurable bootstrap integration.
+sohail@sohail-Latitude-E4200:~/cs/meteor/awesomeness$ 
+                                              
+Changes to your project's package version selections:
+                                              
+nemo64:bootstrap       added, version 3.3.4_2 
+nemo64:bootstrap-data  added, version 3.3.4_1
+
+=> Meteor server restarted                    
+sohail@sohail-Latitude-E4200:~/cs/meteor/awesomeness$ 
+sohail@sohail-Latitude-E4200:~/cs/meteor/awesomeness$ 
+sohail@sohail-Latitude-E4200:~/cs/meteor/awesomeness$ ls
+awesomeness.css   LICENSE              project_dictionary.md  todo.md
+awesomeness.html  my-meteor-notes.txt  README.md
+awesomeness.js    notes                search-navbar.txt
+sohail@sohail-Latitude-E4200:~/cs/meteor/awesomeness$ mkdir client
+sohail@sohail-Latitude-E4200:~/cs/meteor/awesomeness$ cd client/
+sohail@sohail-Latitude-E4200:~/cs/meteor/awesomeness/client$ 
+=> Client modified -- refreshing
+sohail@sohail-Latitude-E4200:~/cs/meteor/awesomeness/client$ 
+sohail@sohail-Latitude-E4200:~/cs/meteor/awesomeness/client$ 
+sohail@sohail-Latitude-E4200:~/cs/meteor/awesomeness/client$ ls
+sohail@sohail-Latitude-E4200:~/cs/meteor/awesomeness/client$ git clone https://github.com/DerMambo/stylesheets.git
+Cloning into 'stylesheets'...
+remote: Counting objects: 122, done.
+remote: Total 122 (delta 0), reused 0 (delta 0), pack-reused 122
+Receiving objects: 100% (122/122), 395.43 KiB | 0 bytes/s, done.
+Resolving deltas: 100% (15/15), done.
+Checking connectivity... done.
+=> Client modified -- refreshing (x2)lsr/awesomeness/client$ 
+stylesheets
+=> Client modified -- refreshing (x3)eor/awesomeness/client$ 
+sohail@sohail-Latitude-E4200:~/cs/meteor/awesomeness/client$ 
+sohail@sohail-Latitude-E4200:~/cs/meteor/awesomeness/client$ cd ..
+sohail@sohail-Latitude-E4200:~/cs/meteor/awesomeness$ ls
+awesomeness.css   client               notes                  search-navbar.txt
+awesomeness.html  LICENSE              project_dictionary.md  todo.md
+awesomeness.js    my-meteor-notes.txt  README.md
+sohail@sohail-Latitude-E4200:~/cs/meteor/awesomeness$ 
+sohail@sohail-Latitude-E4200:~/cs/meteor/awesomeness$ 
+
+
+
+
+
+
+
+14:57
+26 June
+
+db.users.find({'_id': {$in:db.neighb.find({},{friend:1, _id:0}).map(function(x){return x['friend'];}) }})
+
+
+Mujlti-page:
+Routing:
+
+
+Backbone Router
+
+Meteor.Router.add  (Telescope's router.js)
+
+Backbone.Router.extend
+
+
+Thus, the current "canonical" way to do this is probably to use IronRouter.
+
+
+Use IR instead of Router
+
+
+Splash:
+
+http://stackoverflow.com/questions/11740368/how-do-i-create-multi-page-applications-with-meteor
+
+
+
+
+A helper returns a curser.
+A curser isa semi collection.
+A collection is not a "this".
+"this" can only be one item in a "curser".
+(A curser is not a ref, or pointer. It's an iterator.)
+
+Template -> body -> events -> button.click -> { event, this }
+
+Template -> body-> helpers -> allXXX -> {find()}
+
+THIS is also used in map-reduce
+
+
+
+
+
+
+
+
+neighbs=Neighbourship.find().fetch().map( function(x){return x['friend'];} )
+
+Meteor.users.find({'_id': {$in:neighbs}});
+
+
+Meteor.users.find({'_id': {$in:neighbs}}{'_id':1}).fetch();
+
+eic
+eic college
