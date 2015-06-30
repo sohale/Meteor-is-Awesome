@@ -803,3 +803,4 @@ Meteor.users.find({'_id': {$in:neighbs}}{'_id':1}).fetch();
 
 eic
 eic college
+h
